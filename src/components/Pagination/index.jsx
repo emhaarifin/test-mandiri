@@ -2,21 +2,21 @@ import React from 'react';
 
 const Pagination = ({ page, prevPage, nextPage }) => {
   return (
-    <div className='flex'>
+    <div className='flex items-center justify-end mt-8'>
       <div>
         <button
           disabled={page === 1}
           onClick={prevPage}
-          className='p-2 border rounded border-darkmetalic text-darkmetalic'
+          className='px-3 py-1  border rounded border-darkmetalic text-darkmetalic'
         >
           {'<'}
         </button>
       </div>
-      <div>
-        <span className='p-2 border rounded bg-newblue'>{page}</span>
+      <div className='mx-3'>
+        <span className='px-4 py-2 border rounded bg-newblue text-white'>{page}</span>
       </div>
       <div>
-        <button onClick={nextPage} className='p-2 border rounded border-darkmetalic text-darkmetalic'>
+        <button onClick={nextPage} className='px-3 py-1  border rounded border-darkmetalic text-darkmetalic'>
           {'>'}
         </button>
       </div>

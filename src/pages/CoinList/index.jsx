@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../../components/Card';
 import fetcher from '../../components/HOC/fetcher';
@@ -22,6 +22,28 @@ const CoinList = ({ coins, loading, setCoins }) => {
     setCoins(coins.filter((coin) => coin.name.toLowerCase().indexOf(searchName.toLowerCase()) !== -1));
   };
 
+  const handlePrevPage = () => {
+    setPagination((prev) => {
+      return {
+        page: prev.page - 1,
+        start: prev.start - 4,
+        end: prev.end - 4,
+      };
+    });
+  };
+  const handleNextPage = () => {
+    setPagination((prev) => {
+      return {
+        page: prev.page + 1,
+        start: prev.start + 4,
+        end: prev.end + 4,
+      };
+    });
+  };
+
+  useEffect(() => {
+    console.log(pagination);
+  }, [pagination]);
   return (
     <Card title='Coin List'>
       <div className='flex my-9'>
@@ -92,6 +114,7 @@ const CoinList = ({ coins, loading, setCoins }) => {
               </tbody>
             </table>
           </div>
+          <Pagination prevPage={handlePrevPage} nextPage={handleNextPage} page={pagination.page} />
         </Fragment>
       )}
     </Card>
